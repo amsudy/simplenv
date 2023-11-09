@@ -2,8 +2,8 @@ return {
     {
         "shaunsingh/nord.nvim",
         lazy = false,
-        config = function ()
-            vim.cmd[[colorscheme nord]]
+        config = function()
+            vim.cmd [[colorscheme nord]]
         end
     },
     {
