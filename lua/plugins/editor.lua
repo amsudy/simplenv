@@ -48,7 +48,7 @@ return {
         opts = {
             options = {
                 diagnostics = "nvim_lsp",
-                always_show_bufferline = false,
+                -- always_show_bufferline = false,
             }
         },
         dependencies = "nvim-tree/nvim-web-devicons",
@@ -66,12 +66,55 @@ return {
 		},
 		config = function ()
 			require("telescope").load_extension("fzf")
+			require("telescope").load_extension("notify")
+			require("telescope").load_extension("noice")
 		end
     },
 
 	-- telescope-fzf-native.nvim
 	{
 		'nvim-telescope/telescope-fzf-native.nvim',
-		build = 'make'
-	}
+		-- build = 'cmake'
+        build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
+	},
+
+	-- trouble.nvim
+	{
+		"folke/trouble.nvim",
+		cmd = "TroubleToggle",
+		keys = {
+			{"<leader>xx", "<cmd>TroubleToggle<cr>", desc = "Trouble"},
+		},
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {},
+	},
+	-- nvim-notify 
+	{
+		"rcarriga/nvim-notify",
+		event = "VeryLazy",
+		config = function ()
+			vim.notify = require("notify")
+		end
+	},
+
+	-- noice.nvim
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		cmd = "Noice",
+		keys = {
+			{"<leader>nn", "<cmd>Noice<cr>", desc = "Noice"},
+		},
+		opts = {
+			presets = {
+				bottom_search = true,
+				command_palette = true,
+				long_message_to_split = true,
+			}
+		},
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+    		"rcarriga/nvim-notify",
+		}
+	},
 }

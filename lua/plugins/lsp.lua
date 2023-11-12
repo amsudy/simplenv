@@ -1,4 +1,24 @@
 return {
+	-- neodev.nvim
+	{
+		"folke/neodev.nvim",
+		event = "VeryLazy",
+		opts = {
+			debug = true,
+			library = {
+				runtime = "~/projects/neovim/runtime/",
+			},
+		},
+	},
+    
+    -- lsp-format.nvim
+    {
+        "lukas-reineke/lsp-format.nvim",
+        event = "VeryLazy",
+        cmd = "Format",
+        opts = {},
+    },
+
     -- nvim-lspconfig
     {
         "neovim/nvim-lspconfig",
@@ -20,6 +40,7 @@ return {
                     function(sn)
                         require("lspconfig")[sn].setup {
 							capabilities = capabilities,
+                            on_attach = require("lsp-format").on_attach,
 						}
                     end
                 }

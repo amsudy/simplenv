@@ -1,3 +1,10 @@
 vim.g.mapleader = " "
+vim.g.root_spec = {"lsp", {".git", "lua"}, "cwd"}
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.number = true
+vim.opt.clipboard = "unnamedplus"
+vim.opt.relativenumber = true
+vim.opt.showmode = false
+vim.opt.signcolumn = "yes"
