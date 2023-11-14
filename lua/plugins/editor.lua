@@ -1,81 +1,97 @@
 return {
-    -- lualine.nvim
-    {
-        "nvim-lualine/lualine.nvim",
-        lazy = false,
-        opts = {
-            options = {
-                globalstatus = true,
-            },
-        },
-    },
-
-    -- neo-tree.nvim
-    {
-        "nvim-neo-tree/neo-tree.nvim",
-        cmd = "Neotree",
-        event = "VimEnter",
-	keys = {
-		{"<leader>e", "<cmd>Neotree float toggle<cr>", desc = "File explor"}
+	-- wich-key.nvim
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		init = function()
+			vim.o.timeout = true
+			vim.o.timeoutlen = 300
+		end,
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+		}
 	},
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-tree/nvim-web-devicons",
-            "MunifTanjim/nui.nvim",
-            "3rd/image.nvim",
-        },
-        opts = {
-            window = {
-                position = "float",
-				mappings = {
-                    ["<space>"] = "none",
-                },
-            },
-        }
-    },
 
-    -- bufferline.nvim
-    {
-        "akinsho/bufferline.nvim",
-        event = "VimEnter",
-		keys = {
-			{"<leader>bp", "<cmd>BufferLinePick<cr>", desc = "Pick buffer"},
-			{"<leader>bo", "<cmd>BufferLineCloseOthers<cr>", desc = "Close others buffer"},
-			{"<leader>bd", "<cmd>bdelete<cr>", desc = "Delete current buffer"},
-			{"<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Delete current buffer"},
-			{"<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Delete current buffer"},
+	-- lualine.nvim
+	{
+		"nvim-lualine/lualine.nvim",
+		lazy = false,
+		opts = {
+			options = {
+				globalstatus = true,
+			},
 		},
-        opts = {
-            options = {
-                diagnostics = "nvim_lsp",
-                -- always_show_bufferline = false,
-            }
-        },
-        dependencies = "nvim-tree/nvim-web-devicons",
-    },
+	},
 
-    -- telescope.nvim
-    {
+	-- neo-tree.nvim
+	{
+		"nvim-neo-tree/neo-tree.nvim",
+		cmd = "Neotree",
+		event = "VimEnter",
+		keys = {
+			{ "<leader>e", "<cmd>Neotree float toggle<cr>", desc = "File explor" }
+		},
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons",
+			"MunifTanjim/nui.nvim",
+			"3rd/image.nvim",
+		},
+		opts = {
+			window = {
+				position = "float",
+				mappings = {
+					["<space>"] = "none",
+				},
+			},
+		}
+	},
+
+	-- bufferline.nvim
+	{
+		"akinsho/bufferline.nvim",
+		event = "VimEnter",
+		keys = {
+			{ "<leader>bp", "<cmd>BufferLinePick<cr>",        desc = "Pick buffer" },
+			{ "<leader>bo", "<cmd>BufferLineCloseOthers<cr>", desc = "Close others buffer" },
+			{ "<leader>bd", "<cmd>bdelete<cr>",               desc = "Delete current buffer" },
+			{ "<S-h>",      "<cmd>BufferLineCyclePrev<cr>",   desc = "Delete current buffer" },
+			{ "<S-l>",      "<cmd>BufferLineCycleNext<cr>",   desc = "Delete current buffer" },
+		},
+		opts = {
+			options = {
+				diagnostics = "nvim_lsp",
+				-- always_show_bufferline = false,
+			}
+		},
+		dependencies = "nvim-tree/nvim-web-devicons",
+	},
+
+	-- telescope.nvim
+	{
 		"nvim-telescope/telescope.nvim",
 		cmd = "Telescope",
 		dependencies = { 'nvim-lua/plenary.nvim' },
 		keys = {
-			{"<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files"},
-			{"<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Find word"},
-			{"<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Find buffers"},
+			{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
+			{ "<leader>fg", "<cmd>Telescope live_grep<cr>",  desc = "Find word" },
+			{ "<leader>fb", "<cmd>Telescope buffers<cr>",    desc = "Find buffers" },
 		},
-		config = function ()
+		config = function()
 			require("telescope").load_extension("fzf")
 			require("telescope").load_extension("notify")
 			require("telescope").load_extension("noice")
 		end
-    },
+	},
 
 	-- telescope-fzf-native.nvim
 	{
 		'nvim-telescope/telescope-fzf-native.nvim',
 		-- build = 'cmake'
-        build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
+		build =
+		"cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
 	},
 
 	-- trouble.nvim
@@ -83,16 +99,16 @@ return {
 		"folke/trouble.nvim",
 		cmd = "TroubleToggle",
 		keys = {
-			{"<leader>xx", "<cmd>TroubleToggle<cr>", desc = "Trouble"},
+			{ "<leader>xx", "<cmd>TroubleToggle<cr>", desc = "Trouble" },
 		},
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {},
 	},
-	-- nvim-notify 
+	-- nvim-notify
 	{
 		"rcarriga/nvim-notify",
 		event = "VeryLazy",
-		config = function ()
+		config = function()
 			vim.notify = require("notify")
 		end
 	},
@@ -103,7 +119,7 @@ return {
 		event = "VeryLazy",
 		cmd = "Noice",
 		keys = {
-			{"<leader>nn", "<cmd>Noice<cr>", desc = "Noice"},
+			{ "<leader>nn", "<cmd>Noice<cr>", desc = "Noice" },
 		},
 		opts = {
 			presets = {
@@ -114,7 +130,7 @@ return {
 		},
 		dependencies = {
 			"MunifTanjim/nui.nvim",
-    		"rcarriga/nvim-notify",
+			"rcarriga/nvim-notify",
 		}
 	},
 }
