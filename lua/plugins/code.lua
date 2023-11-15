@@ -2,7 +2,7 @@ return {
     -- indent-blankline.nvim
     {
         "lukas-reineke/indent-blankline.nvim",
-        event = { "BufEnter" },
+        event = "VeryLazy",
         opts = {
             scope = {
                 enabled = false,
@@ -19,7 +19,7 @@ return {
     -- mini.indentscope
     {
         "echasnovski/mini.indentscope",
-        event = { "Bufenter" },
+        event = "VeryLazy",
         opts = {
             symbol = "▎",
         },
@@ -46,21 +46,21 @@ return {
     -- mini.comment
     {
         "echasnovski/mini.comment",
-        event = "BufEnter",
+        event = "VeryLazy",
         opts = {},
     },
 
     -- mini.surround
     {
         "echasnovski/mini.surround",
-        event = "BufEnter",
+        event = "VeryLazy",
         opts = {},
     },
 
     -- mini.pairs
     {
         "echasnovski/mini.pairs",
-        event = "BufEnter",
+        event = "VeryLazy",
         opts = {},
     },
 
@@ -79,12 +79,13 @@ return {
     -- nvim-cmp
     {
         "hrsh7th/nvim-cmp",
-        event = "InsertEnter",
+        event = "VeryLazy",
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-cmdline",
+            "hrsh7th/cmp-emoji",
             { "saadparwaiz1/cmp_luasnip", dependencies = "L3MON4D3/LuaSnip" },
         },
         opts = function()
@@ -114,11 +115,12 @@ return {
                     end,
                 },
                 sources = cmp.config.sources({
-                    { name = "nvim_lsp", priority = 50 },
-                    { name = "path",     priority = 40 },
-                    { name = "luasnip",  priority = 30 },
+                    { name = "nvim_lsp", },
+                    { name = "path", },
+                    { name = "luasnip", },
+                    { name = "emoji", },
                 }, {
-                    { name = "buffer", priority = 50, keyword_length = 3 },
+                    { name = "buffer", keyword_length = 3 },
                 }),
                 mapping = cmp.mapping.preset.insert({
                     -- <CR> accepts currently selected item.
