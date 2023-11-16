@@ -49,6 +49,16 @@ return {
         }
     },
 
+    -- mini.files
+    -- {
+    --     "echasnovski/mini.files",
+    --     event = "VimEnter",
+    --     keys = {
+    --         { "<leader>e", "<cmd>MiniFiles.open()<cr>", desc = "Mini explor" }
+    --     },
+    --     config = true
+    -- },
+
     -- bufferline.nvim
     {
         "akinsho/bufferline.nvim",
@@ -74,7 +84,11 @@ return {
     {
         "nvim-telescope/telescope.nvim",
         cmd = "Telescope",
-        dependencies = { 'nvim-lua/plenary.nvim' },
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "folke/noice.nvim",
+            "rcarriga/nvim-notify",
+        },
         keys = {
             { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
             { "<leader>fg", "<cmd>Telescope live_grep<cr>",  desc = "Find word" },
@@ -140,6 +154,19 @@ return {
         "stevearc/dressing.nvim",
         event = "VeryLazy",
         opts = {},
+    },
+
+    -- mini.cursorword
+    -- {
+    --     "echasnovski/mini.cursorword",
+    --     event = "VeryLazy",
+    --     config = true
+    -- },
+
+    -- vim-illuminate
+    {
+        "RRethy/vim-illuminate",
+        event = "VeryLazy",
     }
 }
 

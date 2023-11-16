@@ -13,5 +13,6 @@ return {
     "hrsh7th/cmp-emoji",
     "folke/neoconf.nvim",
     "folke/neodev.nvim",
+    "theHamsta/nvim-dap-virtual-text",
 }
 
