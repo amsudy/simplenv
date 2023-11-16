@@ -167,6 +167,20 @@ return {
     {
         "RRethy/vim-illuminate",
         event = "VeryLazy",
-    }
+    },
+
+    -- neoscroll.nvim  nvim 0.10.0将支持
+    {
+        "karb94/neoscroll.nvim",
+        event = "FileType",
+        config = true
+    },
+
+    -- animation.nvim
+    -- {
+    --     "echasnovski/mini.animate",
+    --     event = "FileType",
+    --     config = true
+    -- }
 }
 
