@@ -8,9 +8,6 @@ return {
             vim.o.timeoutlen = 300
         end,
         opts = {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-            -- refer to the configuration section below
         }
     },
 
@@ -18,11 +15,21 @@ return {
     {
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",
-        opts = {
-            options = {
-                globalstatus = true,
-            },
+        dependencies = {
+            { "catppuccin/nvim", name = "catppuccin" }
         },
+        opts = function()
+            local op = {
+                options = {
+                    globalstatus = true,
+                }
+            }
+            local coln = vim.g.colors_name:find("catppuccin")
+            if coln then
+                op.options.theme = "catppuccin"
+            end
+            return op
+        end,
     },
 
     -- neo-tree.nvim
@@ -46,18 +53,9 @@ return {
                     ["<space>"] = "none",
                 },
             },
+            popup_border_style = "rounded",
         }
     },
-
-    -- mini.files
-    -- {
-    --     "echasnovski/mini.files",
-    --     event = "VimEnter",
-    --     keys = {
-    --         { "<leader>e", "<cmd>MiniFiles.open()<cr>", desc = "Mini explor" }
-    --     },
-    --     config = true
-    -- },
 
     -- bufferline.nvim
     {
@@ -71,12 +69,23 @@ return {
             { "<S-h>",      "<cmd>BufferLineCyclePrev<cr>",   desc = "Delete current buffer" },
             { "<S-l>",      "<cmd>BufferLineCycleNext<cr>",   desc = "Delete current buffer" },
         },
-        opts = {
-            options = {
-                diagnostics = "nvim_lsp",
-                -- always_show_bufferline = false,
+        opts = function()
+            local op = {
+                options = {
+                    diagnostics = "nvim_lsp",
+                    always_show_bufferline = false,
+                },
             }
-        },
+
+            -- if catppuccin is enable change to it
+            local ok, bl = pcall(require, "catppuccin.groups.integrations.bufferline")
+            local coln = vim.g.colors_name:find("catppuccin")
+            if ok and coln then
+                op["highlights"] = bl.get()
+            end
+
+            return op
+        end,
         dependencies = "nvim-tree/nvim-web-devicons",
     },
 
@@ -169,18 +178,20 @@ return {
         event = "VeryLazy",
     },
 
-    -- neoscroll.nvim  nvim 0.10.0将支持
+    -- windows.nvim
     {
-        "karb94/neoscroll.nvim",
-        event = "FileType",
-        config = true
-    },
-
-    -- animation.nvim
-    -- {
-    --     "echasnovski/mini.animate",
-    --     event = "FileType",
-    --     config = true
-    -- }
+        "anuvyklack/windows.nvim",
+        event = "VeryLazy",
+        requires = {
+            "anuvyklack/middleclass",
+            "anuvyklack/animation.nvim"
+        },
+        config = function()
+            vim.o.winwidth = 10
+            vim.o.winminwidth = 10
+            vim.o.equalalways = false
+            require('windows').setup()
+        end
+    }
 }
 

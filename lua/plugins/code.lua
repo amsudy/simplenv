@@ -199,6 +199,49 @@ return {
                 require("conform").format({ async = true, lsp_fallback = true, range = range })
             end, { range = true })
         end
+    },
+
+    -- symbols-outline.nvim
+    {
+        "simrat39/symbols-outline.nvim",
+        keys = {
+            { "<leader>o", "<cmd>SymbolsOutline<cr>", desc = "Outline" },
+        },
+        config = true
+    },
+
+    -- dropbar nvim >= 0.10.0
+    {
+        "Bekaboo/dropbar.nvim",
+        event = "FileType",
+        dependencies = {
+            'nvim-telescope/telescope-fzf-native.nvim'
+        },
+        keys = {
+            { "<leader>p", function() require('dropbar.api').pick() end, desc = "Dropbar pick" }
+        }
+    },
+
+    -- headlines.nvim
+    {
+        "lukas-reineke/headlines.nvim",
+        event = "FileType",
+        dependencies = "nvim-treesitter/nvim-treesitter",
+        config = true, -- or `opts = {}`
+    },
+
+    -- neogit.nvim
+    {
+        "NeogitOrg/neogit",
+        event = "FileType",
+        dependencies = {
+            "nvim-lua/plenary.nvim",         -- required
+            "nvim-telescope/telescope.nvim", -- optional
+            "sindrets/diffview.nvim",        -- optional
+            -- "ibhagwan/fzf-lua",  -- optional
+        },
+        config = true
     }
+
 }
 

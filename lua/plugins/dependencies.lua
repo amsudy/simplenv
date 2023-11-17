@@ -14,5 +14,8 @@ return {
     "folke/neoconf.nvim",
     "folke/neodev.nvim",
     "theHamsta/nvim-dap-virtual-text",
+    "sindrets/diffview.nvim",
+    "anuvyklack/middleclass",
+    "anuvyklack/animation.nvim"
 }
 
