@@ -107,6 +107,7 @@ return {
             require("telescope").load_extension("fzf")
             require("telescope").load_extension("notify")
             require("telescope").load_extension("noice")
+            require('telescope').load_extension('projects')
         end
     },
 
@@ -192,6 +193,36 @@ return {
             vim.o.equalalways = false
             require('windows').setup()
         end
+    },
+
+    -- flash.nvim
+    {
+        "folke/flash.nvim",
+        opts = {},
+        keys = {
+            { "s", function() require("flash").jump() end,       mode = { "n", "o", "x" }, desc = "Flash" },
+            { "S", function() require("flash").treesitter() end, mode = { "n", "o", "x" }, desc = "Flash treesitter" },
+        }
+    },
+
+    -- dashboard-nvim
+    {
+        'nvimdev/dashboard-nvim',
+        event = 'VimEnter',
+        config = function()
+            require('dashboard').setup {
+                disable_move = true,
+                config = {
+                    project = { enable = true, limit = 8, label = 'Project', action = 'Telescope projects' },
+                    mru = { limit = 10, label = 'Recent Files', cwd_only = true },
+                },
+                hide = {
+                    statusline = true,
+                    tabline = true,
+                    winbar = true,
+                }
+            }
+        end,
+        dependencies = { { 'nvim-tree/nvim-web-devicons' } }
     }
 }
-

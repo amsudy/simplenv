@@ -17,6 +17,7 @@ return {
             require("mason").setup()
             require("mason-nvim-dap").setup({
                 ensure_installed = { "codelldb" },
+                automatic_installation = true,
                 handlers = {
                     function(config)
                         require("mason-nvim-dap").default_setup(config)
@@ -36,11 +37,27 @@ return {
                 function(sn)
                     require("lspconfig")[sn].setup {
                         capabilities = capabilities,
+                        on_attach = function(_, bufnr)
+                            vim.lsp.inlay_hint.enable(bufnr, true)
+                        end
                     }
                 end,
             }
         end
     },
+
+    -- lspsaga.nvim
+    -- {
+    --     'nvimdev/lspsaga.nvim',
+    --     event = "FileType",
+    --     config = function()
+    --         require('lspsaga').setup({})
+    --     end,
+    --     dependencies = {
+    --         'nvim-treesitter/nvim-treesitter',
+    --         'nvim-tree/nvim-web-devicons'
+    --     }
+    -- },
 
     -- dap
     {

@@ -16,6 +16,7 @@ return {
     "theHamsta/nvim-dap-virtual-text",
     "sindrets/diffview.nvim",
     "anuvyklack/middleclass",
-    "anuvyklack/animation.nvim"
+    "anuvyklack/animation.nvim",
+    "antoinemadec/FixCursorHold.nvim"
 }
 

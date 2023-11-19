@@ -22,10 +22,12 @@ return {
         name = "catppuccin",
         priority = 1000,
         opts = {
+            -- highlight_overrides = {
+            --     all = { CursorColumn = { bg = "#3b3f53" } },
+            -- },
+            no_italic = true,
             integrations = {
                 cmp = true,
-                gitsigns = true,
-                nvimtree = false,
                 treesitter = true,
                 treesitter_context = true,
                 notify = true,
@@ -91,6 +93,13 @@ return {
             require("catppuccin").setup(opts)
             vim.cmd [[colorscheme catppuccin-frappe]]
         end
+    },
+
+    {
+        'projekt0n/github-nvim-theme',
+        priority = 1000,
+        -- config = function()
+            -- vim.cmd('colorscheme github_light')
+        -- end,
     }
 }
-

@@ -1,5 +1,4 @@
 vim.g.mapleader = " "
--- vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = true

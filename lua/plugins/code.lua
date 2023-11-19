@@ -9,7 +9,15 @@ return {
             },
             exclude = {
                 filetypes = {
+                    "help",
+                    "dashboard",
+                    "neo-tree",
+                    "Trouble",
                     "lazy",
+                    "mason",
+                    "notify",
+                    "toggleterm",
+                    "lazyterm",
                 },
             },
         },
@@ -241,7 +249,27 @@ return {
             -- "ibhagwan/fzf-lua",  -- optional
         },
         config = true
+    },
+
+    -- neotest
+    {
+        "nvim-neotest/neotest",
+        event = "FileType",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "antoinemadec/FixCursorHold.nvim"
+        }
+    },
+
+    -- project.nvim
+    {
+        "ahmedkhalf/project.nvim",
+        config = function()
+            require("project_nvim").setup {
+                -- your configuration comes here
+                -- or leave it empty to use the default settings
+                -- refer to the configuration section below
+            }
+        end
     }
-
 }
-
