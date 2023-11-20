@@ -212,18 +212,22 @@ return {
         event = 'VimEnter',
         config = function()
             require('dashboard').setup {
+                theme = "doom",
                 config = {
-                    shortcut = {
-                        { desc = "Lazy", key = "l", action = "Lazy" }
+                    center = {
+                        { action = "Telescope projects", desc = " Projects", icon = " ", key = "p" },
+                        { action = "Telescope find_files", desc = " Find file", icon = " ", key = "f" },
+                        { action = "Telescope oldfiles", desc = " Recent files", icon = " ", key = "r" },
+                        { action = "Telescope live_grep", desc = " Find text", icon = " ", key = "g" },
+                        { action = "Lazy", desc = " Lazy", icon = "󰒲 ", key = "l" },
+                        { action = "qa", desc = " Quit", icon = " ", key = "q" },
                     },
-                    disable_move = true,
-                    -- project = { label = 'Project', action = function()
-                    --     require("project_nvim").get_recent_projects()
-                    -- end },
-                },
+                }
             }
         end,
-        dependencies = { { 'nvim-tree/nvim-web-devicons' } }
+        dependencies = {
+            { 'nvim-tree/nvim-web-devicons' },
+        }
     }
 }
 
