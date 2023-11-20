@@ -2,8 +2,7 @@ return {
     -- nvim-lspconfig
     {
         "neovim/nvim-lspconfig",
-        -- event = "VeryLazy",
-        event = "FileType",
+        event = "BufReadPre",
         dependencies = {
             { "folke/neoconf.nvim", cmd = "Neoconf", config = true, dependencies = { "nvim-lspconfig" } },
             { "folke/neodev.nvim",  opts = {} },

@@ -22,6 +22,7 @@ return {
             local op = {
                 options = {
                     globalstatus = true,
+                    disabled_filetypes = { statusline = { "dashboard" } },
                 }
             }
             local coln = vim.g.colors_name:find("catppuccin")
@@ -114,7 +115,7 @@ return {
     -- telescope-fzf-native.nvim
     {
         'nvim-telescope/telescope-fzf-native.nvim',
-        -- build = 'cmake'
+        -- build = 'make'
         build =
         "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build"
     },
@@ -176,7 +177,7 @@ return {
     -- vim-illuminate
     {
         "RRethy/vim-illuminate",
-        event = "VeryLazy",
+        event = "BufReadPre",
     },
 
     -- windows.nvim
@@ -211,18 +212,18 @@ return {
         event = 'VimEnter',
         config = function()
             require('dashboard').setup {
-                disable_move = true,
                 config = {
-                    project = { enable = true, limit = 8, label = 'Project', action = 'Telescope projects' },
-                    mru = { limit = 10, label = 'Recent Files', cwd_only = true },
+                    shortcut = {
+                        { desc = "Lazy", key = "l", action = "Lazy" }
+                    },
+                    disable_move = true,
+                    -- project = { label = 'Project', action = function()
+                    --     require("project_nvim").get_recent_projects()
+                    -- end },
                 },
-                hide = {
-                    statusline = true,
-                    tabline = true,
-                    winbar = true,
-                }
             }
         end,
         dependencies = { { 'nvim-tree/nvim-web-devicons' } }
     }
 }
+

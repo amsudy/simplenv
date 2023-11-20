@@ -2,7 +2,7 @@ return {
     -- indent-blankline.nvim
     {
         "lukas-reineke/indent-blankline.nvim",
-        event = "VeryLazy",
+        event = "BufReadPre",
         opts = {
             scope = {
                 enabled = false,
@@ -27,7 +27,7 @@ return {
     -- mini.indentscope
     {
         "echasnovski/mini.indentscope",
-        event = "VeryLazy",
+        event = "BufReadPre",
         opts = {
             symbol = "▎",
         },
@@ -54,21 +54,21 @@ return {
     -- mini.comment
     {
         "echasnovski/mini.comment",
-        event = "VeryLazy",
+        event = "BufReadPre",
         opts = {},
     },
 
     -- mini.surround
     {
         "echasnovski/mini.surround",
-        event = "VeryLazy",
+        event = "BufReadPre",
         opts = {},
     },
 
     -- mini.pairs
     {
         "echasnovski/mini.pairs",
-        event = "VeryLazy",
+        event = "InsertEnter",
         opts = {},
     },
 
@@ -87,7 +87,7 @@ return {
     -- nvim-cmp
     {
         "hrsh7th/nvim-cmp",
-        event = "VeryLazy",
+        event = "InsertEnter",
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
@@ -221,7 +221,7 @@ return {
     -- dropbar nvim >= 0.10.0
     {
         "Bekaboo/dropbar.nvim",
-        event = "FileType",
+        event = "BufReadPre",
         dependencies = {
             'nvim-telescope/telescope-fzf-native.nvim'
         },
@@ -231,22 +231,25 @@ return {
     },
 
     -- headlines.nvim
-    {
-        "lukas-reineke/headlines.nvim",
-        event = "FileType",
-        dependencies = "nvim-treesitter/nvim-treesitter",
-        config = true, -- or `opts = {}`
-    },
+    -- {
+    --     "lukas-reineke/headlines.nvim",
+    --     event = "BufReadPre",
+    --     dependencies = "nvim-treesitter/nvim-treesitter",
+    --     config = true, -- or `opts = {}`
+    -- },
 
     -- neogit.nvim
     {
         "NeogitOrg/neogit",
-        event = "FileType",
+        cmd = "Neogit",
         dependencies = {
             "nvim-lua/plenary.nvim",         -- required
             "nvim-telescope/telescope.nvim", -- optional
             "sindrets/diffview.nvim",        -- optional
             -- "ibhagwan/fzf-lua",  -- optional
+        },
+        keys = {
+            { "<leader>gg", "<cmd>Neogit<cr>", desc = "Neogit" }
         },
         config = true
     },
@@ -254,22 +257,31 @@ return {
     -- neotest
     {
         "nvim-neotest/neotest",
-        event = "FileType",
         dependencies = {
             "nvim-lua/plenary.nvim",
+            "rouge8/neotest-rust",
             "antoinemadec/FixCursorHold.nvim"
-        }
+        },
+        keys = {
+            { "<leader>rr", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Test" },
+        },
+        config = function()
+            require("neotest").setup({
+                adapters = {
+                    require("neotest-rust")
+                },
+            })
+        end
     },
 
     -- project.nvim
     {
         "ahmedkhalf/project.nvim",
-        config = function()
-            require("project_nvim").setup {
-                -- your configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
-            }
+        config = function ()
+            require("project_nvim").setup({
+                patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json" }
+            })
         end
     }
 }
+

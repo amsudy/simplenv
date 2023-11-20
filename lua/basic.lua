@@ -16,6 +16,6 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.relativenumber = true
 vim.opt.showmode = false
 vim.opt.signcolumn = "yes"
-vim.opt.statuscolumn = "%s%=%{v:relnum?v:relnum:v:lnum}%=%C"
+vim.opt.statuscolumn = "%s%=%{v:relnum?v:relnum:v:lnum}%=%C▎"
 vim.opt.smoothscroll = true
 
