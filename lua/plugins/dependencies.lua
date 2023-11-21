@@ -17,6 +17,7 @@ return {
     "sindrets/diffview.nvim",
     "anuvyklack/middleclass",
     "anuvyklack/animation.nvim",
-    "antoinemadec/FixCursorHold.nvim"
+    "antoinemadec/FixCursorHold.nvim",
+    "jbyuki/one-small-step-for-vimkind"
 }
 

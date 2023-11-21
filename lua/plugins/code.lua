@@ -279,8 +279,16 @@ return {
         "ahmedkhalf/project.nvim",
         config = function()
             require("project_nvim").setup({
-                -- patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json" }
             })
+        end
+    },
+
+    -- gitsigns.nvim
+    {
+        "lewis6991/gitsigns.nvim",
+        event = "BufReadPre",
+        config = function()
+            require("gitsigns").setup()
         end
     }
 }

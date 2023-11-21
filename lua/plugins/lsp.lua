@@ -20,7 +20,7 @@ return {
                 handlers = {
                     function(config)
                         require("mason-nvim-dap").default_setup(config)
-                    end
+                    end,
                 }
             })
             require("mason-lspconfig").setup({
@@ -61,11 +61,28 @@ return {
     -- dap
     {
         "mfussenegger/nvim-dap",
+        dependencies = {
+            "jbyuki/one-small-step-for-vimkind"
+        },
         keys = {
             { "<leader>dc", function() require("dap").continue() end,          desc = "Debug continue" },
             { "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "Debug breakpoint" },
             { "<leader>ds", function() require("dap").dap_stopped() end,       desc = "Debug stop" },
         },
+        config = function()
+            local dap = require("dap")
+            dap.configurations.lua = {
+                {
+                    type = 'nlua',
+                    request = 'attach',
+                    name = "Attach to running Neovim instance",
+                }
+            }
+
+            dap.adapters.nlua = function(callback, config)
+                callback({ type = 'server', host = config.host or "127.0.0.1", port = config.port or 8086 })
+            end
+        end
     },
 
     -- nvim-dap-ui
