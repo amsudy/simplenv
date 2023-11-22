@@ -66,7 +66,7 @@ return {
         },
         keys = {
             { "<leader>dc", function() require("dap").continue() end,          desc = "Debug continue" },
-            { "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "Debug breakpoint" },
+            { "<leader>.",  function() require("dap").toggle_breakpoint() end, desc = "Debug breakpoint" },
             { "<leader>ds", function() require("dap").dap_stopped() end,       desc = "Debug stop" },
         },
         config = function()

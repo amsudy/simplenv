@@ -249,7 +249,7 @@ return {
             -- "ibhagwan/fzf-lua",  -- optional
         },
         keys = {
-            { "<leader>gg", "<cmd>Neogit<cr>", desc = "Neogit" }
+            { "<leader>g", "<cmd>Neogit<cr>", desc = "Neogit" }
         },
         config = true
     },
@@ -263,7 +263,7 @@ return {
             "antoinemadec/FixCursorHold.nvim"
         },
         keys = {
-            { "<leader>rr", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Test" },
+            { "<leader>t", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Test" },
         },
         config = function()
             require("neotest").setup({

@@ -125,7 +125,7 @@ return {
         "folke/trouble.nvim",
         cmd = "TroubleToggle",
         keys = {
-            { "<leader>xx", "<cmd>TroubleToggle<cr>", desc = "Trouble" },
+            { "<leader>x", "<cmd>TroubleToggle<cr>", desc = "Trouble" },
         },
         dependencies = { "nvim-tree/nvim-web-devicons" },
         opts = {},
@@ -145,7 +145,7 @@ return {
         event = "VeryLazy",
         cmd = "Noice",
         keys = {
-            { "<leader>nn", "<cmd>Noice<cr>", desc = "Noice" },
+            { "<leader>n", "<cmd>Noice<cr>", desc = "Noice" },
         },
         opts = {
             presets = {
@@ -187,6 +187,12 @@ return {
         requires = {
             "anuvyklack/middleclass",
             "anuvyklack/animation.nvim"
+        },
+        keys = {
+            { "<C-h>", "<C-w>h<cr>", desc = "h window" },
+            { "<C-j>", "<C-w>j<cr>", desc = "j window" },
+            { "<C-k>", "<C-w>k<cr>", desc = "k window" },
+            { "<C-l>", "<C-w>l<cr>", desc = "l window" },
         },
         config = function()
             vim.o.winwidth = 10
