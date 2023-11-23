@@ -21,6 +21,8 @@ vim.opt.relativenumber = true
 vim.opt.showmode = false
 vim.opt.signcolumn = "yes"
 vim.opt.statuscolumn = "%s%=%{v:relnum?v:relnum:v:lnum}%=%C▎"
+vim.opt.splitright = true
+vim.opt.splitbelow = true
 if vim.fn.has("nvim-0.10") == 1 then
     vim.opt.smoothscroll = true
 end

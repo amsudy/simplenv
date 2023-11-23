@@ -12,6 +12,14 @@ return {
             "jay-babu/mason-nvim-dap.nvim",
         },
         config = function()
+            vim.api.nvim_create_autocmd("LspAttach", {
+                callback = function(args)
+                    vim.lsp.inlay_hint.enable(args.buf, true)
+                    local opts = { buffer = args.buf }
+                    vim.keymap.set({ 'n', 'v' }, "<leader>a", vim.lsp.buf.code_action, opts)
+                    vim.keymap.set({ 'n' }, "<leader>rn", vim.lsp.buf.rename, opts)
+                end
+            })
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
             require("mason").setup()
             require("mason-nvim-dap").setup({
@@ -36,9 +44,6 @@ return {
                 function(sn)
                     require("lspconfig")[sn].setup {
                         capabilities = capabilities,
-                        on_attach = function(_, bufnr)
-                            vim.lsp.inlay_hint.enable(bufnr, true)
-                        end
                     }
                 end,
             }
