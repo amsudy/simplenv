@@ -11,8 +11,6 @@ return {
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-emoji",
-    "folke/neoconf.nvim",
-    "folke/neodev.nvim",
     "theHamsta/nvim-dap-virtual-text",
     "sindrets/diffview.nvim",
     "anuvyklack/middleclass",
