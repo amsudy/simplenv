@@ -27,3 +27,13 @@ if vim.fn.has("nvim-0.10") == 1 then
     vim.opt.smoothscroll = true
 end
 
+vim.api.nvim_create_autocmd({ "InsertLeave" }, {
+    callback = function(args)
+        local buf = args.buf
+        local chgd = vim.fn.getbufinfo(buf)[1].changed == 1
+        if chgd then
+            vim.api.nvim_command("w")
+        end
+    end
+})
+
