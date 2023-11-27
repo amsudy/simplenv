@@ -33,6 +33,7 @@ vim.api.nvim_create_autocmd({ "InsertLeave" }, {
         local chgd = vim.fn.getbufinfo(buf)[1].changed == 1
         if chgd then
             vim.api.nvim_command("w")
+            require("conform").format({ async = true, lsp_fallback = true })
         end
     end
 })
