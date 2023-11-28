@@ -18,6 +18,8 @@ vim.opt.number = true
 vim.opt.pumheight = 10
 vim.opt.clipboard = "unnamedplus"
 vim.opt.relativenumber = true
+vim.opt.smartcase = true
+vim.opt.smartindent = true
 vim.opt.showmode = false
 vim.opt.signcolumn = "yes"
 vim.opt.statuscolumn = "%s%=%{v:relnum?v:relnum:v:lnum}%=%C▎"
@@ -27,13 +29,14 @@ if vim.fn.has("nvim-0.10") == 1 then
     vim.opt.smoothscroll = true
 end
 
-vim.api.nvim_create_autocmd({ "InsertLeave" }, {
+-- write if insert or buf leave
+vim.api.nvim_create_autocmd({ "InsertLeave", "BufLeave" }, {
     callback = function(args)
         local buf = args.buf
         local chgd = vim.fn.getbufinfo(buf)[1].changed == 1
         if chgd then
-            vim.api.nvim_command("w")
             require("conform").format({ async = true, lsp_fallback = true })
+            vim.api.nvim_command("w")
         end
     end
 })

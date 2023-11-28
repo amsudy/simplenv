@@ -14,7 +14,9 @@ return {
         config = function()
             vim.api.nvim_create_autocmd("LspAttach", {
                 callback = function(args)
-                    vim.lsp.inlay_hint.enable(args.buf, true)
+                    vim.defer_fn(function()
+                        vim.lsp.inlay_hint.enable(args.buf, true)
+                    end, 1000)
                     local opts = { buffer = args.buf }
                     vim.keymap.set({ 'n', 'v' }, "<leader>a", vim.lsp.buf.code_action, opts)
                     vim.keymap.set({ 'n' }, "<leader>rn", vim.lsp.buf.rename, opts)
