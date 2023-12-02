@@ -48,6 +48,11 @@ return {
             "3rd/image.nvim",
         },
         opts = {
+            filesystem = {
+                -- bind_to_cwd = false,
+                -- follow_current_file = { enabled = true },
+                use_libuv_file_watcher = true,
+            },
             window = {
                 position = "float",
                 mappings = {

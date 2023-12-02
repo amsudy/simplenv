@@ -182,17 +182,21 @@ return {
         cmd = { "ConformInfo" },
         keys = {
             {
-                "<leader>fq",
+                "<leader><leader>",
                 function()
-                    require("conform").format({ async = true, lsp_fallback = true })
+                    local buf = vim.api.nvim_get_current_buf()
+                    if vim.fn.getbufinfo(buf)[1].changed == 1 then
+                        require("conform").format({ timerout_ms = 200, lsp_fallback = true })
+                        vim.api.nvim_command("write")
+                    end
                 end,
-                desc = "Format buffer",
+                desc = "save and format",
             },
         },
         -- Everything in opts will be passed to setup()
         opts = {
             -- Set up format-on-save
-            format_on_save = { timeout_ms = 500, lsp_fallback = true },
+            format_on_save = { timeout_ms = 200, lsp_fallback = true },
         },
         init = function()
             vim.api.nvim_create_user_command("Format", function(args)

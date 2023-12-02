@@ -30,14 +30,15 @@ if vim.fn.has("nvim-0.10") == 1 then
 end
 
 -- write if insert or buf leave
-vim.api.nvim_create_autocmd({ "InsertLeave", "BufLeave" }, {
-    callback = function(args)
-        local buf = args.buf
-        local chgd = vim.fn.getbufinfo(buf)[1].changed == 1
-        if chgd then
-            require("conform").format({ async = true, lsp_fallback = true })
-            vim.api.nvim_command("w")
-        end
-    end
-})
+-- vim.api.nvim_create_autocmd({ "InsertLeave", "BufLeave" }, {
+--     pattern = { vim.fn.expand("$ROOTDIR") .. "*", vim.fn.expand("$CWD") .. "*" },
+--     callback = function(args)
+--         local buf = args.buf
+--         local chgd = vim.fn.getbufinfo(buf)[1].changed == 1
+--         if chgd then
+--             require("conform").format({ timeout_ms = 200, lsp_fallback = true })
+--             vim.api.nvim_command("w")
+--         end
+--     end
+-- })
 
